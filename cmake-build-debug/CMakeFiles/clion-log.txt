@@ -1,0 +1,13 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja /Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive
+CMake Error: The current CMakeCache.txt directory /Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug/_deps/catch2-subbuild/CMakeCache.txt is different than the directory /Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/ideal-gas-yashactive/cmake-build-debug/_deps/catch2-subbuild where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+
+CMake Error at /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FetchContent.cmake:1005 (message):
+  CMake step for catch2 failed: 1
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FetchContent.cmake:1146:EVAL:2 (__FetchContent_directPopulate)
+  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/FetchContent.cmake:1146 (cmake_language)
+  CMakeLists.txt:42 (FetchContent_Populate)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug/CMakeFiles/CMakeOutput.log".
