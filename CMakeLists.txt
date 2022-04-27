@@ -40,7 +40,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE include/player.h src/player.cc include/rooms.h src/rooms.cc)
+    add_library(catch2 INTERFACE include/game_object.h src/obstacles.cc include/obstacles_game_engine.h src/game_object.cc include/obstacles.h src/obstacles_game_engine.cc tests/tests.cc)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -49,8 +49,8 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND SOURCE_FILES    src/player.cc
-        src/rooms.cc)
+list(APPEND SOURCE_FILES src/obstacles.cc
+        src/game_object.cc)
 
 list(APPEND TEST_FILES )
 
