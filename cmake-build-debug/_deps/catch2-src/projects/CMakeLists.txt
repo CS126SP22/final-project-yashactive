@@ -352,23 +352,23 @@ endif()
 
 # Add per compiler options
 if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang|AppleClang|GNU" )
-    target_compile_options(SelfTest PRIVATE -Wall -Wextra -Wunreachable-code -Wpedantic -Wmissing-declarations )
+    target_compile_options( SelfTest PRIVATE -Wall -Wextra -Wunreachable-code -Wpedantic -Wmissing-declarations )
     if (CATCH_ENABLE_WERROR)
-        target_compile_options(SelfTest PRIVATE -Werror )
+        target_compile_options( SelfTest PRIVATE -Werror -Wno-error=pragmas )
     endif()
 endif()
 # Clang specific options go here
 if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
-    target_compile_options(SelfTest PRIVATE -Wweak-vtables -Wexit-time-destructors -Wglobal-constructors -Wmissing-noreturn )
+    target_compile_options( SelfTest PRIVATE -Wweak-vtables -Wexit-time-destructors -Wglobal-constructors -Wmissing-noreturn )
 endif()
 if ( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
     STRING(REGEX REPLACE "/W[0-9]" "/W4" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}) # override default warning level
-    target_compile_options(SelfTest PRIVATE /w44265 /w44061 /w44062 /w45038 )
+    target_compile_options( SelfTest PRIVATE /w44265 /w44061 /w44062 /w45038 )
     if (CATCH_ENABLE_WERROR)
-        target_compile_options(SelfTest PRIVATE /WX)
+        target_compile_options( SelfTest PRIVATE /WX)
     endif()
     # Force MSVC to consider everything as encoded in utf-8
-    target_compile_options(SelfTest PRIVATE /utf-8 )
+    target_compile_options( SelfTest PRIVATE /utf-8 )
 endif()
 
 

@@ -107,7 +107,7 @@ function (lcov_merge_files OUTFILE ...)
 
 	add_custom_command(OUTPUT "${OUTFILE}"
 		COMMAND ${LCOV_BIN} --quiet -a ${OUTFILE}.raw --output-file ${OUTFILE}
-			--base-directory ../../../.. ${LCOV_EXTRA_FLAGS}
+			--base-directory ${PROJECT_SOURCE_DIR} ${LCOV_EXTRA_FLAGS}
 		COMMAND ${LCOV_BIN} --quiet -r ${OUTFILE} ${LCOV_REMOVE_PATTERNS}
 			--output-file ${OUTFILE} ${LCOV_EXTRA_FLAGS}
 		DEPENDS ${OUTFILE}.raw
@@ -167,7 +167,7 @@ function (lcov_capture_initial_tgt TNAME)
 		list(APPEND GENINFO_FILES ${OUTFILE})
 
 		add_custom_command(OUTPUT ${OUTFILE} COMMAND ${GCOV_ENV} ${GENINFO_BIN}
-				--quiet --base-directory ../../../.. --initial
+				--quiet --base-directory ${PROJECT_SOURCE_DIR} --initial
 				--gcov-tool ${GCOV_BIN} --output-filename ${OUTFILE}
 				${GENINFO_EXTERN_FLAG} ${TDIR}/${FILE}.gcno
 			DEPENDS ${TNAME}
@@ -261,7 +261,7 @@ function (lcov_capture_tgt TNAME)
 		add_custom_command(OUTPUT ${OUTFILE}
 			COMMAND test -f "${TDIR}/${FILE}.gcda"
 				&& ${GCOV_ENV} ${GENINFO_BIN} --quiet --base-directory
-                ../../../.. --gcov-tool ${GCOV_BIN}
+					${PROJECT_SOURCE_DIR} --gcov-tool ${GCOV_BIN}
 					--output-filename ${OUTFILE} ${GENINFO_EXTERN_FLAG}
 					${TDIR}/${FILE}.gcda
 				|| cp ${OUTFILE}.init ${OUTFILE}
@@ -284,7 +284,7 @@ function (lcov_capture_tgt TNAME)
 	# Add target for generating html output for this target only.
 	file(MAKE_DIRECTORY ${LCOV_HTML_PATH}/${TNAME})
 	add_custom_target(${TNAME}-genhtml
-		COMMAND ${GENHTML_BIN} --quiet --sort --prefix ../../../..
+		COMMAND ${GENHTML_BIN} --quiet --sort --prefix ${PROJECT_SOURCE_DIR}
 			--baseline-file ${LCOV_DATA_PATH_INIT}/${TNAME}.info
 			--output-directory ${LCOV_HTML_PATH}/${TNAME}
 			--title "${CMAKE_PROJECT_NAME} - target ${TNAME}"
@@ -320,7 +320,7 @@ function (lcov_capture)
 			COMMAND ${GENHTML_BIN} --quiet --sort
 				--baseline-file ${LCOV_DATA_PATH_INIT}/all_targets.info
 				--output-directory ${LCOV_HTML_PATH}/all_targets
-				--title "${CMAKE_PROJECT_NAME}" --prefix "../../../.."
+				--title "${CMAKE_PROJECT_NAME}" --prefix "${PROJECT_SOURCE_DIR}"
 				${GENHTML_CPPFILT_FLAG} ${OUTFILE}
 			DEPENDS lcov-geninfo-init lcov-geninfo
 		)
@@ -345,7 +345,7 @@ if (NOT TARGET lcov-genhtml)
 			--title \"${CMAKE_PROJECT_NAME} - targets  `find
 				${LCOV_DATA_PATH_CAPTURE} -name \"*.info\" ! -name
 				\"all_targets.info\" -exec basename {} .info \\\;`\"
-			--prefix ../../../..
+			--prefix ${PROJECT_SOURCE_DIR}
 			--sort
 			${GENHTML_CPPFILT_FLAG}
 			`find ${LCOV_DATA_PATH_CAPTURE} -name \"*.info\" ! -name

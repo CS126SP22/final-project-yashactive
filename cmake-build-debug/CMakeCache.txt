@@ -14,6 +14,37 @@
 # EXTERNAL cache entries
 ########################
 
+//Build Cinder as a shared library. 
+BUILD_SHARED_LIBS:BOOL=OFF
+
+//Copy assets to a folder next to the application. Default is OFF,
+// and a symlink is created that points to the original assets
+// folder.
+CINDER_COPY_ASSETS:BOOL=OFF
+
+//Build Cinder without AntTweakBar support. 
+CINDER_DISABLE_ANTTWEAKBAR:BOOL=OFF
+
+//Build Cinder without audio support. 
+CINDER_DISABLE_AUDIO:BOOL=OFF
+
+//Build Cinder without video support. 
+CINDER_DISABLE_VIDEO:BOOL=OFF
+
+//Enable headless rendering. Valid options: egl
+CINDER_HEADLESS_GL:STRING=
+
+//Target platform to build for. Default will match the current
+// OS. Vaid options: linux, macosx, msw, ios, android
+CINDER_TARGET:STRING=macosx
+
+//Target GL for the system. Valid options: ogl, es2, es3, es31,
+// es32, es2-rpi
+CINDER_TARGET_GL:STRING=
+
+//Print verbose build configuration messages. 
+CINDER_VERBOSE:BOOL=OFF
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -140,7 +171,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=ideal-gas
+CMAKE_PROJECT_NAME:STATIC=flappy-game
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -226,6 +257,15 @@ FETCHCONTENT_UPDATES_DISCONNECTED_CATCH2:BOOL=OFF
 
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=/usr/local/bin/git
+
+//Value Computed by CMake
+flappy-game_BINARY_DIR:STATIC=/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug
+
+//Value Computed by CMake
+flappy-game_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+flappy-game_SOURCE_DIR:STATIC=/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive
 
 //Value Computed by CMake
 ideal-gas_BINARY_DIR:STATIC=/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug

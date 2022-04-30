@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 11)
-project(ideal-gas)
+project(flappy-game)
 
 # This tells the compiler to not aggressively optimize and
 # to include debugging information so that the debugger
@@ -40,7 +40,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE include/game_object.h src/obstacles.cc include/obstacles_game_engine.h src/game_object.cc include/obstacles.h src/obstacles_game_engine.cc tests/tests.cc)
+    add_library(catch2 INTERFACE include/game_object.h src/obstacles.cc src/game_object.cc include/obstacles.h src/game_engine.cc tests/tests.cc)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -50,25 +50,26 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES src/obstacles.cc
-        src/game_object.cc)
+        src/game_object.cc
+        src/game_engine.cc)
 
-list(APPEND TEST_FILES )
+list(APPEND TEST_FILES tests/tests.cc )
 
 ci_make_app(
-        APP_NAME        gas-simulation
+        APP_NAME        flappy-game
         CINDER_PATH     ${CINDER_PATH}
-        SOURCES         ../final-project-yashactive/apps/cinder_app_main.cc ${SOURCE_FILES}
+        SOURCES         apps/cinder_app_main.cc ${SOURCE_FILES}
         INCLUDES        include
 )
 
 ci_make_app(
-        APP_NAME        gas-simulation-test
+        APP_NAME        flappy-game-test
         CINDER_PATH     ${CINDER_PATH}
-        SOURCES         tests/test_main.cc ${SOURCE_FILES} ${TEST_FILES}
+        SOURCES         tests/tests.cc ${SOURCE_FILES} ${TEST_FILES}
         INCLUDES        include
         LIBRARIES       catch2
 )
 
 if(MSVC)
-    set_property(TARGET gas-simulation-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
+    set_property(TARGET flappy-game-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
 endif()

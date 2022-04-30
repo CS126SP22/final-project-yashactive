@@ -168,7 +168,7 @@ function (codecov_path_of_source FILE RETURN_VAR)
 
 	string(REPLACE "${CMAKE_CURRENT_BINARY_DIR}/" "" FILE "${FILE}")
 	if(IS_ABSOLUTE ${FILE})
-		file(RELATIVE_PATH FILE . ${FILE})
+		file(RELATIVE_PATH FILE ${CMAKE_CURRENT_SOURCE_DIR} ${FILE})
 	endif()
 
 	# get the right path for file

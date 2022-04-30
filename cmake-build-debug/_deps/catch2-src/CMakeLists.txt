@@ -16,10 +16,10 @@ if (CMAKE_BINARY_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 endif()
 
 
-project(Catch2 LANGUAGES CXX VERSION 2.13.8)
+project(Catch2 LANGUAGES CXX VERSION 2.13.9)
 
 # Provide path for scripts
-list(APPEND CMAKE_MODULE_PATH "CMake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake")
 
 include(GNUInstallDirs)
 
@@ -34,7 +34,7 @@ option(CATCH_INSTALL_DOCS "Install documentation alongside library" ON)
 option(CATCH_INSTALL_HELPERS "Install contrib alongside library" ON)
 
 # define some folders
-set(CATCH_DIR .)
+set(CATCH_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(SELF_TEST_DIR ${CATCH_DIR}/projects/SelfTest)
 set(BENCHMARK_DIR ${CATCH_DIR}/projects/Benchmark)
 set(HEADER_DIR ${CATCH_DIR}/include)
@@ -130,7 +130,7 @@ if (NOT_SUBPROJECT)
     set(CATCH_CMAKE_CONFIG_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/Catch2")
 
     configure_package_config_file(
-            CMake/Catch2Config.cmake.in
+        ${CMAKE_CURRENT_LIST_DIR}/CMake/Catch2Config.cmake.in
         ${CMAKE_CURRENT_BINARY_DIR}/Catch2Config.cmake
         INSTALL_DESTINATION
           ${CATCH_CMAKE_CONFIG_DESTINATION}
@@ -184,7 +184,7 @@ if (NOT_SUBPROJECT)
 
     install(
       DIRECTORY
-        "single_include"
+        "single_include/"
       DESTINATION
         "${CMAKE_INSTALL_INCLUDEDIR}"
     )
@@ -201,7 +201,7 @@ if (NOT_SUBPROJECT)
     if(CATCH_INSTALL_DOCS)
       install(
         DIRECTORY
-              docs
+          docs/
         DESTINATION
           "${CMAKE_INSTALL_DOCDIR}"
       )
@@ -234,7 +234,7 @@ if (NOT_SUBPROJECT)
         CACHE PATH "Path where catch2.pc is installed"
     )
     configure_file(
-            CMake/catch2.pc.in
+      ${CMAKE_CURRENT_SOURCE_DIR}/CMake/catch2.pc.in
       ${CMAKE_CURRENT_BINARY_DIR}/catch2.pc
       @ONLY
     )

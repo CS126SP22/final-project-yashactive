@@ -1,4 +1,4 @@
-# Install script for directory: /Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/ideal-gas-yashactive/cmake-build-debug/_deps/catch2-subbuild
+# Install script for directory: /Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug/_deps/catch2-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/ideal-gas-yashactive/cmake-build-debug/_deps/catch2-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug/_deps/catch2-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

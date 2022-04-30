@@ -23,7 +23,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/ideal-gas-yashactive/cmake-build-debug/_deps/catch2-subbuild -B/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/ideal-gas-yashactive/cmake-build-debug/_deps/catch2-subbuild
+  command = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug/_deps/catch2-subbuild -B/Users/Yashovardhanmaheshwari/Downloads/cinder_0.9.2_vc2015/my-projects/final-project-yashactive/cmake-build-debug/_deps/catch2-subbuild
   description = Re-running CMake...
   generator = 1
 

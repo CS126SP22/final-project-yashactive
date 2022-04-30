@@ -2,37 +2,32 @@
 // Created by Yashovardhan maheshwari  on 12/04/22.
 //
 #include <iostream>
-
-#ifndef IDEAL_GAS_PLAYER_H
-#define IDEAL_GAS_PLAYER_H
-
-#endif //IDEAL_GAS_PLAYER_H
-
 #include "cinder/gl/gl.h"
 #include <iostream>
 #include <vector>
-#include "obstacles_game_engine.h"
 #include "cinder/gl/Fbo.h"
 #include "cinder/gl/GlslProg.h"
 #include "cinder/gl/VboMesh.h"
+#include <cinder/app/App.h>
 
-namespace flappy_game {
+namespace flappygame {
     class GameObject {
     public:
         void Draw();
-        size_t GetXPosition();
-        size_t GetYPosition();
+        size_t GetXCoord();
+        size_t GetYCoord();
         void Move();
         void PositionReset();
         void AccomodateGravity();
 
     private:
         size_t x_coordinate_;
-        size_t y_coordinate;
+        size_t y_coordinate_;
         double object_velocity_ = 0;
         double object_size_ = 24;
         double time_ = 0;
-        double move_velocity_ = 95;
+        const double kMoveVelocity_ = 85;
+        const double kGravity_ = 9.81;
 
     };
 }
