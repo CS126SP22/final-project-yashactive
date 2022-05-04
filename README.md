@@ -7,3 +7,6 @@ The game will display instructions on how to start on the main game screen while
 I’m motivated to make this game cause I have been a fan of Flappy bird since very young and was addicted to it at one point. Hence, as flappy bird is now nowhere on the app store, I wished to recreate my own version of it.
 
 To start the game PRESS ENTER. To Play Again PRESS DELETE. To Jump PRESS SPACE.
+
+![image](https://user-images.githubusercontent.com/55031761/166623910-15f4d73f-2e0e-4231-a58b-07368e5363b9.png)
+
