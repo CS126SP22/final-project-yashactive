@@ -36,11 +36,11 @@ FetchContent_Declare(
         GIT_TAG v2.x
 )
 
-# Adds Catch2 testing library
+# Adds Catch2 test.ing library
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE include/game_object.h src/obstacles.cc src/game_object.cc include/obstacles.h src/game_engine.cc tests/tests.cc)
+    add_library(catch2 INTERFACE include/game_object.h src/obstacles.cc src/game_object.cc include/obstacles.h src/game_engine.cc tests/game_object_tests.cc)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -51,9 +51,12 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES src/obstacles.cc
         src/game_object.cc
-        src/game_engine.cc)
+        src/game_engine.cc
+        apps/my_app.h
+        apps/my_app.cc)
 
-list(APPEND TEST_FILES tests/tests.cc )
+list(APPEND TEST_FILES tests/game_object_tests.cc
+                        tests/obstacles_test.cc)
 
 ci_make_app(
         APP_NAME        flappy-game
@@ -65,7 +68,7 @@ ci_make_app(
 ci_make_app(
         APP_NAME        flappy-game-test
         CINDER_PATH     ${CINDER_PATH}
-        SOURCES         tests/tests.cc ${SOURCE_FILES} ${TEST_FILES}
+        SOURCES         tests/game_object_tests.cc ${SOURCE_FILES} ${TEST_FILES}
         INCLUDES        include
         LIBRARIES       catch2
 )

@@ -3,39 +3,50 @@
 //
 
 #include <iostream>
+#include <random>
 #include "obstacles.h"
 #include "game_object.h"
 
 namespace flappygame {
     Obstacles::Obstacles(const cinder::vec2 coord) {
-        x_coordinate_ = coord.x;
-        x2_coordinate = 80 +  coord.x;
-        upper_height_random = rand() % (max_upper_height - min_upper_height + 1) + min_upper_height;
-        lower_height_random = rand() % (max_lower_height - min_lower_height + 1) + min_lower_height;
+        x_coordinate_right_ = 100 +  coord.x;
+        x_coordinate_left_ = coord.x;
+        upper_height_random_  = rand() % (kMaxUpperHeight_ - kMinUpperHeight_ + 1) + kMinUpperHeight_;
+        lower_height_random_ = rand() % (kMaxLowerHeight_ - kMinLowerHeight_ + 1) + (kMinLowerHeight_ - 20) ;
+        //std::cout<<"This is lower \t"<<lower_height_random << "\n";
+        //std::cout<<"This is upper \t"<<upper_height_random << "\n";
     }
 
     void Obstacles::DrawObstacle() {
-        cinder::gl::color(3.0, 0.8, 1.2);
-        cinder::gl::drawSolidRect(cinder::Rectf(x_coordinate_,0, x2_coordinate, upper_height_random));
-        cinder::gl::drawSolidRect(cinder::Rectf(x_coordinate_,cinder::app::getWindowHeight() - 250, x2_coordinate,cinder::app::getWindowHeight() - lower_height_random));
+        cinder::gl::color(0.30196, 0.90196, 0.443137);
+        cinder::gl::drawSolidRect(cinder::Rectf(x_coordinate_left_,cinder::app::getWindowHeight() - 400, x_coordinate_right_,cinder::app::getWindowHeight() - lower_height_random_));
+        cinder::gl::drawSolidRect(cinder::Rectf(x_coordinate_left_,0, x_coordinate_right_, upper_height_random_));
     }
 
-    size_t Obstacles::GetXLocation() {
-        return x_coordinate_;
+    size_t Obstacles::GetXLeftLocation() const {
+        return x_coordinate_left_;
     }
 
-    size_t Obstacles::GetX2Location() {
-        return x2_coordinate;
+    size_t Obstacles::GetXRightLocation() const {
+        return x_coordinate_right_;
     }
 
     void Obstacles::ObstaclePositionUpdate() {
-        if (x_coordinate_ > 0) {
-            x_coordinate_ = x_coordinate_ - obstacle_velocity_;
-            x2_coordinate = x2_coordinate - obstacle_velocity_;
+        if (x_coordinate_left_ > 0) {
+            x_coordinate_left_ = x_coordinate_left_ - obstacle_velocity_;
+            x_coordinate_right_ = x_coordinate_right_ - obstacle_velocity_;
         } else {
-            x_coordinate_ = cinder::app::getWindowWidth() + 150;
-            x2_coordinate = cinder::app::getWindowWidth() + 250;
+            x_coordinate_left_ = cinder::app::getWindowWidth() + 150;
+            x_coordinate_right_ = cinder::app::getWindowWidth() + 250;
         }
+    }
+
+    size_t Obstacles::GetLowerObsHeightRandom() {
+        return cinder::app::getWindowHeight() - lower_height_random_;
+    }
+
+    size_t Obstacles::GetUpperObsHeightRandom() {
+        return upper_height_random_;
     }
 
 

@@ -7,27 +7,27 @@
 
 namespace flappygame {
     void ObstacleGameEngine::DrawObstacles() {
-        for (Obstacles &obs: items_) {
-            obs.DrawObstacle();
+        for (Obstacles & obstacle: obstacles_) {
+            obstacle.DrawObstacle();
         }
     }
 
     void ObstacleGameEngine::PutObstacles(size_t number_of_obstacles_) {
-        for (size_t i = 0; i < number_of_obstacles_; i++) {
-            items_.push_back(Obstacles(cinder::vec2(x_coordinate_, y_coordinate)));
+        for (size_t i = 0; i < number_of_obstacles_; ++i) {
+            Obstacles obstacle_to_add = Obstacles(cinder::vec2(x_coordinate_, y_coordinate));
+            obstacles_.push_back(obstacle_to_add);
             y_coordinate = 0;
-            x_coordinate_ = x_coordinate_ - kObstcaleDistance_;
+            x_coordinate_ -= kObstcaleDistance_;
 
         }
-
     }
     list<Obstacles> ObstacleGameEngine::getObstacles() {
-        return items_;
+        return obstacles_;
     }
 
-    void ObstacleGameEngine::LocationUpdateObstacles() {
-        for (Obstacles &obs: items_) {
-            obs.ObstaclePositionUpdate();
+    void ObstacleGameEngine::UpdateObstacleLocation() {
+        for (Obstacles & obstacle: obstacles_) {
+            obstacle.ObstaclePositionUpdate();
         }
     }
 
