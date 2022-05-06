@@ -1,3 +1,9 @@
+
+
+
+
+
+
 Final Project Proposal – The Flappy Game
 
 I wish to make the Flappy Bird game using Cinder and C++, wherein a player crosses obstacles and earns points. In my game, the player will earn points by moving the object and each object jump will result in one point. The player must move the object more times while navigating through spaces between two pipes to achieve a  high.
